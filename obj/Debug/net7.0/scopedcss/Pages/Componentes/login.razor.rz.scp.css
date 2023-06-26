@@ -1,0 +1,31 @@
+.login-container[b-geblx92d5v] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('images.jpg');
+    background-size: cover;
+}
+
+.login-card[b-geblx92d5v] {
+    background-color: #A64CCB  ;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+
+.login-form[b-geblx92d5v] {
+    margin-top: 20px;
+}
+
+.form-group[b-geblx92d5v] {
+    margin-bottom: 10px;
+}
+
+.error-message[b-geblx92d5v] {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}

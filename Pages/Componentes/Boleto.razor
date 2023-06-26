@@ -1,0 +1,53 @@
+@page "/boletos/{eventoId}"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+@if (evento == null)
+{
+    <p>Cargando evento...</p>
+}
+else
+{
+    <div class="boleto-container">
+    <h4>Evento: @evento.nombreEvento</h4>
+    <p>Tipo: @evento.tipoEvento</p>
+    <p>Fecha: @evento.fecha</p>
+    <p>Ubicación: @evento.ubicacion</p>
+    <p>Disponibilidad: @evento.disponibilidad</p>
+    
+
+    <label>Cantidad de Boletos:</label>
+    <input type="number" min="1" max="@evento.disponibilidad" value="@cantidadBoletos" @oninput="e => cantidadBoletos = Convert.ToInt32(e.Value)">
+
+    <button class="btn btn-primary" disabled="@evento.disponibilidad <= 0 || cantidadBoletos <= 0 || cantidadBoletos > evento.disponibilidad" @onclick="ReservarBoletos">Reservar</button>
+    <p class="error-message">@mensajeError</p>
+    </div>
+}
+
+@code {
+    EventoDto evento;
+    BoletoDto boleto;
+    private string mensajeError;
+    public int cantidadBoletos = 1;
+
+    [Parameter]
+    public string eventoId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarEvento();
+    }
+
+    private async Task CargarEvento()
+    {
+        evento = await Http.GetFromJsonAsync<EventoDto>($"/eventos/find/{eventoId}");
+    }
+ 
+
+    private async Task ReservarBoletos()
+    {
+        
+        NavigationManager.NavigateTo("/confirmacion");
+    }
+
+}

@@ -1,0 +1,54 @@
+@page "/login"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<div class="login-container">
+    <div class="login-card">
+        <h3>Iniciar sesión</h3>
+        <div class="login-form">
+            <div class="form-group">
+                <label for="username">Correo:</label>
+                <input id="username" type="text" class="form-control" @bind="correo" />
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input id="password" type="password" class="form-control" @bind="contrasena" />
+            </div>
+            <button class="btn btn-primary" @onclick="IniciarSesion">Iniciar sesión</button>
+            <p class="error-message">@mensajeError</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+@code {
+    private string correo;
+    private string contrasena;
+    private string mensajeError;
+
+    private async Task IniciarSesion()
+    {
+        var datosLogin = new UsuarioDto
+        {
+            correo = correo,
+            contraseña = contrasena
+        };
+
+        var response = await Http.PostAsJsonAsync("/usuario/save", datosLogin);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var token = await response.Content.ReadAsStringAsync();
+            
+            NavigationManager.NavigateTo("/eventos");
+        }
+        else
+        {
+            mensajeError = "Error al iniciar sesión. Verifica tus credenciales.";
+        }
+    }
+
+  
+}

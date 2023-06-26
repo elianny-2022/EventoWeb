@@ -1,0 +1,67 @@
+ @page "/eventos"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Lista de Eventos</h3>
+
+@if (eventos == null)
+{
+    <p>Cargando eventos...</p>
+}
+else if (eventos.Count == 0)
+{
+    <p>No hay eventos disponibles.</p>
+}
+else
+{
+    <div class="eventos-cuadro">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo de Evento</th>
+                <th>Fecha</th>
+                <th>Ubicación</th>
+                <th>Asientos diponibles</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var evento in eventos)
+            {
+                <tr>
+                    <td>@evento.nombreEvento</td>
+                    <td>@evento.tipoEvento</td>
+                    <td>@evento.fecha</td>
+                    <td>@evento.ubicacion</td>
+                    <td>@evento.disponibilidad</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="() => VerBoletos(evento.eventoId)">Ver Boletos</button>
+                    </td>
+                </tr>
+            }
+         
+        </tbody>
+    </table>
+       </div>
+}
+
+@code {
+    List<EventoDto> eventos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarEventos();
+    }
+
+    private async Task CargarEventos()
+    {
+        eventos = await Http.GetFromJsonAsync<List<EventoDto>>("/evento/list");
+    }
+
+    private void VerBoletos(long eventoId)
+    {
+        NavigationManager.NavigateTo($"/boletos/{eventoId}");
+    }
+} 
