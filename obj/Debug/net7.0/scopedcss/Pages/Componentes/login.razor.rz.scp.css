@@ -3,12 +3,12 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('images.jpg');
+    background-image: url('event1.png');
     background-size: cover;
 }
 
 .login-card[b-geblx92d5v] {
-    background-color: #A64CCB  ;
+    background-color: #cf80ee  ;
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

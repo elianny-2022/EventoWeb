@@ -6,10 +6,9 @@ public class Eventos
     [Key]
     public int eventoId { get; set; }
     public DateTime fecha { get; set; }
-    public string? lugarEvento { get; set; }
+    public string? ubicacion { get; set; }
     public string? nombreEvento { get; set; }
-    public string? tipoEvento { get; set; }
-    public double asientoDisponible { get; set; }
+    public long tipoEventoId { get; set; }
     [ForeignKey("EventoId")]
     public List<EventosDetalle> Detalle { get; set; } = new List<EventosDetalle>();
 }

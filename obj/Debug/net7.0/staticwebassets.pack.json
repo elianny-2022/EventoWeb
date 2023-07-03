@@ -13,10 +13,6 @@
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\hp\\Desktop\\Semestre 2-2023\\Computacion centrada en Redes\\AppBoletos\\BoletosWeb\\wwwroot\\css\\estilos.css",
-      "PackagePath": "staticwebassets\\css\\estilos.css"
-    },
-    {
       "Id": "C:\\Users\\hp\\Desktop\\Semestre 2-2023\\Computacion centrada en Redes\\AppBoletos\\BoletosWeb\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "PackagePath": "staticwebassets\\css\\open-iconic"
     },
@@ -57,16 +53,12 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\hp\\Desktop\\Semestre 2-2023\\Computacion centrada en Redes\\AppBoletos\\BoletosWeb\\wwwroot\\download.jpg",
-      "PackagePath": "staticwebassets\\download.jpg"
+      "Id": "C:\\Users\\hp\\Desktop\\Semestre 2-2023\\Computacion centrada en Redes\\AppBoletos\\BoletosWeb\\wwwroot\\event1.png",
+      "PackagePath": "staticwebassets\\event1.png"
     },
     {
       "Id": "C:\\Users\\hp\\Desktop\\Semestre 2-2023\\Computacion centrada en Redes\\AppBoletos\\BoletosWeb\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
-    },
-    {
-      "Id": "C:\\Users\\hp\\Desktop\\Semestre 2-2023\\Computacion centrada en Redes\\AppBoletos\\BoletosWeb\\wwwroot\\images.jpg",
-      "PackagePath": "staticwebassets\\images.jpg"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.BoletosWeb.Microsoft.AspNetCore.StaticWebAssets.props",

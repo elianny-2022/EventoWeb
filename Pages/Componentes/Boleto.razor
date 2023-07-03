@@ -2,52 +2,107 @@
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 
-@if (evento == null)
-{
-    <p>Cargando evento...</p>
-}
-else
-{
-    <div class="boleto-container">
-    <h4>Evento: @evento.nombreEvento</h4>
-    <p>Tipo: @evento.tipoEvento</p>
-    <p>Fecha: @evento.fecha</p>
-    <p>Ubicación: @evento.ubicacion</p>
-    <p>Disponibilidad: @evento.disponibilidad</p>
+<div className="Container" class="card border-secondary mb-3" style="Margin: 15px;">
+            <div class="card shadow-lg">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card text-center">
+        @if (boleto == null)
+        {
+            <p>Cargando evento...</p>
+        }
+        else
+        {
+            <div class="ticket-container">
+            <h4>Evento: @evento.nombreEvento</h4>
+            <p>Tipo de Evento: @evento.tipoEvento</p>
+            <p>Fecha: @evento.fecha.ToString("dd/MM/yyyy")</p>
+            <p>Ubicación: @evento.ubicacion</p>
+
     
+ <label> Escriba la cantidad de boletos a reservar</label>
+   <div>
+        <label>Cantidad de boletos:</label>
+        <input type="number" @bind="boleto.cantidadBoletos" />
 
-    <label>Cantidad de Boletos:</label>
-    <input type="number" min="1" max="@evento.disponibilidad" value="@cantidadBoletos" @oninput="e => cantidadBoletos = Convert.ToInt32(e.Value)">
+    </div>
+    <div class="card text-center">
+        <td>Precio: @boleto.precio.00</td>
+    </div>
 
-    <button class="btn btn-primary" disabled="@evento.disponibilidad <= 0 || cantidadBoletos <= 0 || cantidadBoletos > evento.disponibilidad" @onclick="ReservarBoletos">Reservar</button>
-    <p class="error-message">@mensajeError</p>
+    <div>
+        <label>Tipo de asiento:</label>
+        <select @bind="boleto.asiento" aria-label=".form-select-sm example">
+            <option value="VIP">VIP</option>
+            <option value="Popular">Popular</option>
+            <option value= "General">General</option>
+        </select>
+    </div>
+
+    <button @onclick="Reservar">Reservar</button>
+     @if (reservaExitosa)
+        {
+            <p>¡Reservación exitosa!</p>
+        }
+        
+        @if (!string.IsNullOrEmpty(mensajeError))
+        {
+            <p>Error: @mensajeError</p>
+        }
     </div>
 }
+</div>
+    </div>
+                </div>
+            </div>
+        </div>
 
 @code {
     EventoDto evento;
     BoletoDto boleto;
+    private int cantidadBoletosDisponibles;
     private string mensajeError;
     public int cantidadBoletos = 1;
+    public int precio;
+    private bool reservaExitosa = false;
 
     [Parameter]
     public string eventoId { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        await CargarEvento();
+        await Evento();
+        await Boletos();
+        //await BoletosDisponibles();
     }
 
-    private async Task CargarEvento()
+    private async Task Evento()
     {
-        evento = await Http.GetFromJsonAsync<EventoDto>($"/eventos/find/{eventoId}");
+        evento = await Http.GetFromJsonAsync<EventoDto>($"/eventos/eventos/find/{eventoId}");
     }
  
+    private async Task Boletos(){
+        boleto = await Http.GetFromJsonAsync<BoletoDto>($"/boletos/boleto/find/{eventoId}");
+    }
+    private async Task BoletosDisponibles(){
 
-    private async Task ReservarBoletos()
+        string tipoAsiento = "VIP"; 
+        cantidadBoletosDisponibles = await Http.GetFromJsonAsync<int>($"/cantidad-boletos-disponibles");
+    }
+     private async Task Reservar()
     {
-        
-        NavigationManager.NavigateTo("/confirmacion");
+        try
+        {
+           
+            reservaExitosa = true;
+            mensajeError = null;
+        }
+        catch (Exception ex)
+        {
+           
+            reservaExitosa = false;
+            mensajeError = ex.Message;
+        }
     }
 
 }

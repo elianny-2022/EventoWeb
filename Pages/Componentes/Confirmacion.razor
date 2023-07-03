@@ -1,58 +1,40 @@
-@page "/confirmacion"
+@* @page "/confirmacion"
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
 
 <h3>Confirmación de Reserva</h3>
 
 <p>¡Reserva realizada con éxito!</p>
 
 <h4>Historial de Eventos Reservados:</h4>
-@foreach (var reserva in reservas)
-{
-    <div class="reserva-card">
-        <h5>@reserva.cantidadBoletos</h5>
-        <p>@reserva.precio</p>
-        <p>@reserva.fecha</p>
-    </div>
-}
+        @foreach (var reserva in reservas)
+        {
+            <div class="reserva-card">
+                <h5>@reserva.cantidadBoletos</h5>
+                <p>@reserva.precio</p>
+            </div>
+        }
 
 @code {
     private List<BoletoDto> reservas;
 
     protected override async Task OnInitializedAsync()
     {
-        reservas = await Http.GetFromJsonAsync<List<BoletoDto>>("/listboleto/boleto");
+        RealizarReserva();   
     }
 
     private async Task RealizarReserva()
     {
-        // Aquí se realiza la lógica para hacer la reserva en la API
-        // Puedes utilizar los datos necesarios para enviar en la solicitud HTTP, como el ID del evento y la cantidad de boletos
-
-        // Por ejemplo, supongamos que tienes una propiedad en tu componente llamada 'eventoId' que contiene el ID del evento seleccionado
-        // y otra propiedad llamada 'cantidadBoletos' que contiene la cantidad de boletos a reservar
-
-        // Creas un objeto con los datos de la reserva
-        var reserva = new BoletoDto
-        {
-           @*  boletoId = bo,
-            cantidadBoletos = cantidadBoletos *@
-        };
-
-        // Realizas la solicitud HTTP con el método PostAsync y envías los datos en el cuerpo de la solicitud
-        var response = await Http.PostAsJsonAsync("/boleto/save", reserva);
-
-        // Verificas el resultado de la respuesta HTTP y tomas las acciones correspondientes
-        if (response.IsSuccessStatusCode)
-        {
-            // La reserva se realizó exitosamente
-            // Puedes mostrar un mensaje de confirmación o redirigir a otra página
-        }
-        else
-        {
-            // Ocurrió un error al hacer la reserva
-            // Puedes mostrar un mensaje de error o tomar otras acciones
-        }
+      
+      reservas = await Http.GetFromJsonAsync<List<BoletoDto>>("/listboleto/boleto");
+        
+    }
+    private async Task Reservar()
+    {
+        
+        NavigationManager.NavigateTo("/boletos/{eventoId}");
+       
     }
 }
-
+ *@
  

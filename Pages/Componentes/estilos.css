@@ -1,0 +1,108 @@
+.evento-card {
+    display: inline-block;
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.evento-card.selected {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.evento-card img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.boleto-card {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.boleto-card img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.reserva-card {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.reserva-card img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+    .ticket-container {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin: 20px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+    }
+
+    .boleto-container h4 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .boleto-container p {
+        margin-bottom: 5px;
+    }
+
+    .boleto-container label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .boleto-container input[type="number"],
+    .boleto-container select {
+        width: 200px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .boleto-container button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .reserva-exitosa {
+        margin-top: 10px;
+        color: green;
+        font-weight: bold;
+    }
+
+    .mensaje-error {
+        margin-top: 10px;
+        color: red;
+        font-weight: bold;
+    }
+

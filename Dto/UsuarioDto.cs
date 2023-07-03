@@ -8,7 +8,6 @@ namespace BoletosWeb.Models
     public string? correo { get; set; }
     public string? contraseña { get; set; }
     public string? direccion { get; set; }
-    public string? historial {get; set;}
     }
 
 
