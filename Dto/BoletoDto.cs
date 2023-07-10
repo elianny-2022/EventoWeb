@@ -6,9 +6,10 @@ namespace BoletosWeb.Models
          public double cantidadBoletos {get; set;}
          public string? asiento { get; set; }
          public double precio { get; set; }
+         public double reducir {get; set;}
          
 
     }
-
+    
    
 }

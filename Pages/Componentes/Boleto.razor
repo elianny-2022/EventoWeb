@@ -14,20 +14,25 @@
         else
         {
             <div class="ticket-container">
-            <h4>Evento: @evento.nombreEvento</h4>
+            <h2>Evento: @evento.nombreEvento</h2>
             <p>Tipo de Evento: @evento.tipoEvento</p>
-            <p>Fecha: @evento.fecha.ToString("dd/MM/yyyy")</p>
+            <p>Fecha: @evento.fecha</p>
+            <p>Hora: @evento.hora</p>
             <p>Ubicación: @evento.ubicacion</p>
-
+    <p></p>
     
- <label> Escriba la cantidad de boletos a reservar</label>
+ 
    <div>
-        <label>Cantidad de boletos:</label>
-        <input type="number" @bind="boleto.cantidadBoletos" />
-
+         <p></p>
+         <label>Ingrese cantidad de boletos a reservar</label>
+        <InputNumber @bind-Value="reducir" />
+        <label>Boletos disponibles</label>
+        <InputNumber disable @bind-Value="boleto.cantidadBoletos"/>
+        <p></p>
+        
     </div>
-    <div class="card text-center">
-        <td>Precio: @boleto.precio.00</td>
+    <div class="text-center">
+        <p>Precio: @boleto.precio.00</p>
     </div>
 
     <div>
@@ -38,11 +43,12 @@
             <option value= "General">General</option>
         </select>
     </div>
-
-    <button @onclick="Reservar">Reservar</button>
+    <p></p>
+    <button  type="button" class="btn btn-outline-success grap-4" @onclick="Reservar">Reservar</button>
      @if (reservaExitosa)
         {
-            <p>¡Reservación exitosa!</p>
+            <p></p>
+            <p>¡Reservación exitosa! a reservado @reducir boletos</p>
         }
         
         @if (!string.IsNullOrEmpty(mensajeError))
@@ -51,6 +57,9 @@
         }
     </div>
 }
+
+
+
 </div>
     </div>
                 </div>
@@ -60,10 +69,14 @@
 @code {
     EventoDto evento;
     BoletoDto boleto;
-    private int cantidadBoletosDisponibles;
     private string mensajeError;
-    public int cantidadBoletos = 1;
-    public int precio;
+    public int cantidadBoletos {get; set;}
+    public double reducir {get; set;} 
+    public double resultado{get; set;} 
+    public int precio {get; set;}
+    List<Boleto> boletosDisponibles = new List<Boleto>();
+    List<BoletoDto> boletosReservados = new List<BoletoDto>();
+
     private bool reservaExitosa = false;
 
     [Parameter]
@@ -73,7 +86,7 @@
     {
         await Evento();
         await Boletos();
-        //await BoletosDisponibles();
+       
     }
 
     private async Task Evento()
@@ -84,18 +97,30 @@
     private async Task Boletos(){
         boleto = await Http.GetFromJsonAsync<BoletoDto>($"/boletos/boleto/find/{eventoId}");
     }
-    private async Task BoletosDisponibles(){
-
-        string tipoAsiento = "VIP"; 
-        cantidadBoletosDisponibles = await Http.GetFromJsonAsync<int>($"/cantidad-boletos-disponibles");
-    }
+   
      private async Task Reservar()
     {
         try
         {
-           
+            if(reducir > boleto.cantidadBoletos ){
+                mensajeError = "La cantidad de boletos solicitada sobrepasa la cantidad disponible";
+                return;
+            }
+            if (reducir == 0) {
+                mensajeError = "La cantidad de boletos no es válida";
+                return;
+            }
+            resultado =  boleto.cantidadBoletos - reducir;
+            boleto.cantidadBoletos = resultado;
+
+            boletosReservados.Add(boleto);
+
             reservaExitosa = true;
             mensajeError = null;
+
+            Http.PutAsJsonAsync<BoletoDto>($"boletos/boleto/update/{boleto.boletoId}", boleto);
+            
+            
         }
         catch (Exception ex)
         {

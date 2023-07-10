@@ -2,7 +2,7 @@
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 
-<div className="Container" class="card border-secondary mb-3" style="Margin: 15px;">
+<div className="evento-container" class="card border-secondary mb-3" style="Margin: 15px;">
         <div class="card shadow-lg">
             <div class="card">
                <div class="card-header">
@@ -27,6 +27,7 @@
                         <th>Nombre</th>
                         <th>Tipo de Evento</th>
                         <th>Fecha</th>
+                        <th>Hora</th>
                         <th>Ubicación</th>
                         <th>Descripcion</th>
                     </tr>
@@ -38,7 +39,8 @@
                         <tr>
                             <td>@evento.nombreEvento</td>
                             <td>@evento.tipoEvento</td>
-                            <td>@evento.fecha.ToString("dd/MM/yyyy")</td>
+                            <td>@evento.fecha</td>
+                            <td>@evento.hora</td>
                             <td>@evento.ubicacion</td>
                             <td>@evento.descripcion</td>
                             <td><button type="button" class="btn btn-outline-info btn-sm" @onclick="() => 
@@ -58,7 +60,7 @@
 </div>
 </div>
 @code {
-    List<EventoDto> eventos;
+    List<EventoDto> eventos ;
 
     protected override async Task OnInitializedAsync()
     {

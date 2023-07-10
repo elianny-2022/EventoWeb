@@ -105,4 +105,11 @@
         color: red;
         font-weight: bold;
     }
-
+    .evento-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url('event1.png');
+        background-size: cover;
+    }

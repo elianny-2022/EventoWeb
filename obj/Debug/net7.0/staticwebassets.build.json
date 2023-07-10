@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "y7IUaa/v7RY8LdHaxv02q2FFtEEP4h2qhS0kQGDFyy8=",
+  "Hash": "nndeoqHBI7k+DII2hJYJBQpiJD4VPvGw9HALKhoggl8=",
   "Source": "BoletosWeb",
   "BasePath": "_content/BoletosWeb",
   "Mode": "Default",
@@ -255,6 +255,23 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "C:\\Users\\hp\\Desktop\\Semestre 2-2023\\Computacion centrada en Redes\\AppBoletos\\BoletosWeb\\wwwroot\\event.jpg",
+      "SourceId": "BoletosWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hp\\Desktop\\Semestre 2-2023\\Computacion centrada en Redes\\AppBoletos\\BoletosWeb\\wwwroot\\",
+      "BasePath": "_content/BoletosWeb",
+      "RelativePath": "event.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\event.jpg"
+    },
+    {
       "Identity": "C:\\Users\\hp\\Desktop\\Semestre 2-2023\\Computacion centrada en Redes\\AppBoletos\\BoletosWeb\\wwwroot\\event1.png",
       "SourceId": "BoletosWeb",
       "SourceType": "Discovered",
@@ -287,6 +304,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
+    },
+    {
+      "Identity": "C:\\Users\\hp\\Desktop\\Semestre 2-2023\\Computacion centrada en Redes\\AppBoletos\\BoletosWeb\\wwwroot\\images.jpg",
+      "SourceId": "BoletosWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hp\\Desktop\\Semestre 2-2023\\Computacion centrada en Redes\\AppBoletos\\BoletosWeb\\wwwroot\\",
+      "BasePath": "_content/BoletosWeb",
+      "RelativePath": "images.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images.jpg"
     }
   ]
 }
