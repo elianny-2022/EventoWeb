@@ -1,4 +1,4 @@
-@page "/boletos/{eventoId}"
+@page "/boletos/{eventoId:int}"
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 
@@ -67,6 +67,8 @@
         </div>
 
 @code {
+     [Parameter]
+    public int eventoId { get; set; }
     EventoDto evento;
     BoletoDto boleto;
     private string mensajeError;
@@ -74,13 +76,11 @@
     public double reducir {get; set;} 
     public double resultado{get; set;} 
     public int precio {get; set;}
-    List<Boleto> boletosDisponibles = new List<Boleto>();
     List<BoletoDto> boletosReservados = new List<BoletoDto>();
 
     private bool reservaExitosa = false;
 
-    [Parameter]
-    public string eventoId { get; set; }
+   
 
     protected override async Task OnInitializedAsync()
     {
@@ -95,7 +95,10 @@
     }
  
     private async Task Boletos(){
-        boleto = await Http.GetFromJsonAsync<BoletoDto>($"/boletos/boleto/find/{eventoId}");
+        List<BoletoDto>? boletos = await Http.GetFromJsonAsync<List<BoletoDto>>($"/boletos/listboleto/boleto");
+    
+
+           boleto = boletos.Where(b => b.evento?.eventoId == eventoId).FirstOrDefault() ;
     }
    
      private async Task Reservar()
@@ -110,7 +113,7 @@
                 mensajeError = "La cantidad de boletos no es válida";
                 return;
             }
-            resultado =  boleto.cantidadBoletos - reducir;
+            resultado =  boleto.cantidadBoletos - reducir; 
             boleto.cantidadBoletos = resultado;
 
             boletosReservados.Add(boleto);
